@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dreaming, Building & Partnering with Disney</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Quicksand:wght@300;400;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Quicksand", sans-serif;
+        background: #000428;
+        background: linear-gradient(
+          135deg,
+          #000428 0%,
+          #004e92 50%,
+          #1a0933 100%
+        );
+        color: #fff;
+        overflow-x: hidden;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      /* Magical animated background */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 3s infinite ease-in-out;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.5);
+        }
+      }
+
+      .shooting-star {
+        position: fixed;
+        width: 2px;
+        height: 2px;
+        background: linear-gradient(90deg, #fff, transparent);
+        border-radius: 50%;
+        animation: shoot 3s linear infinite;
+      }
+
+      @keyframes shoot {
+        0% {
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-300px, 300px);
+          opacity: 0;
+        }
+      }
+
+      /* Castle silhouette */
+      .castle-container {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 300px;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.15;
+      }
+
+      .castle {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 400px;
+        height: 250px;
+        background: linear-gradient(to top, #1a0933, transparent);
+      }
+
+      /* Content container */
+      .content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Hero section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+        position: relative;
+      }
+
+      .hero-title {
+        font-family: "Cinzel", serif;
+        font-size: 4.5rem;
+        font-weight: 700;
+        background: linear-gradient(
+          45deg,
+          #ffd700,
+          #ffed4e,
+          #ff69b4,
+          #87ceeb,
+          #ffd700
+        );
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientFlow 6s ease infinite;
+        margin-bottom: 20px;
+        text-shadow: 0 0 80px rgba(255, 215, 0, 0.5);
+        letter-spacing: 3px;
+      }
+
+      @keyframes gradientFlow {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 1.8rem;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        color: #e0e7ff;
+        line-height: 1.8;
+        text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3);
+        font-weight: 300;
+      }
+
+      .magic-wand {
+        font-size: 3rem;
+        animation: wave 2s ease-in-out infinite;
+        display: inline-block;
+        filter: drop-shadow(0 0 20px #ffd700);
+      }
+
+      .profile-img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 20px 0;
+        border: 6px solid rgba(255, 215, 0, 0.15);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+          0 0 30px rgba(255, 215, 0, 0.12);
+      }
+
+      @keyframes wave {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(-15deg);
+        }
+        75% {
+          transform: rotate(15deg);
+        }
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translate(-50%, 0);
+        }
+        50% {
+          transform: translate(-50%, 15px);
+        }
+      }
+
+      .scroll-indicator::before {
+        content: "✨";
+        font-size: 2rem;
+        display: block;
+        animation: spin 4s linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Section styling */
+      section {
+        padding: 100px 10%;
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .section-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border-radius: 40px;
+        padding: 60px;
+        margin-bottom: 60px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 215, 0, 0.1) 0%,
+          transparent 70%
+        );
+        animation: rotate 20s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .section-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 80px rgba(255, 215, 0, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+
+      h2 {
+        font-family: "Cinzel", serif;
+        font-size: 3rem;
+        margin-bottom: 30px;
+        background: linear-gradient(90deg, #ffd700, #ff69b4, #87ceeb);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s linear infinite;
+        position: relative;
+        display: inline-block;
+      }
+
+      @keyframes shimmer {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      h2::after {
+        content: "✨";
+        position: absolute;
+        right: -50px;
+        top: 0;
+        font-size: 2rem;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      p {
+        font-size: 1.15rem;
+        line-height: 2;
+        color: #cbd5e1;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Magic cards grid */
+      .magic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .magic-card {
+        background: linear-gradient(
+          135deg,
+          rgba(138, 43, 226, 0.3),
+          rgba(30, 144, 255, 0.3)
+        );
+        backdrop-filter: blur(15px);
+        border-radius: 30px;
+        padding: 40px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .magic-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.7s ease;
+      }
+
+      .magic-card:hover::before {
+        left: 100%;
+      }
+
+      .magic-card:hover {
+        transform: translateY(-20px) scale(1.05) rotateY(5deg);
+        box-shadow: 0 30px 70px rgba(255, 215, 0, 0.4),
+          0 0 60px rgba(138, 43, 226, 0.3);
+        border-color: rgba(255, 215, 0, 0.5);
+      }
+
+      .card-icon {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        display: inline-block;
+        animation: pulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.6));
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .magic-card h3 {
+        font-family: "Cinzel", serif;
+        font-size: 1.6rem;
+        color: #ffd700;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 15px rgba(255, 215, 0, 0.5);
+      }
+
+      .magic-card p {
+        color: #e0e7ff;
+        font-size: 1.05rem;
+      }
+
+      /* Highlight text */
+      .highlight {
+        background: linear-gradient(90deg, #ffd700, #ff69b4);
+        padding: 4px 14px;
+        border-radius: 20px;
+        color: #000;
+        font-weight: 700;
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+        display: inline-block;
+        animation: glow 2s ease-in-out infinite;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+        }
+        50% {
+          box-shadow: 0 4px 30px rgba(255, 215, 0, 0.8);
+        }
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+        padding: 80px 10% 60px;
+        text-align: center;
+        border-top: 2px solid rgba(255, 215, 0, 0.3);
+        position: relative;
+      }
+
+      .dream-quote {
+        font-family: "Cinzel", serif;
+        font-size: 2rem;
+        color: #ffd700;
+        font-style: italic;
+        margin-bottom: 30px;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        animation: fadeGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes fadeGlow {
+        0%,
+        100% {
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .dream-quote::before,
+      .dream-quote::after {
+        content: "⭐";
+        margin: 0 20px;
+        display: inline-block;
+        animation: rotate 10s linear infinite;
+      }
+
+      footer p {
+        color: #94a3b8;
+        font-size: 1rem;
+      }
+
+      /* Floating particles */
+      .particle {
+        position: fixed;
+        pointer-events: none;
+        animation: rise 15s linear infinite;
+      }
+
+      @keyframes rise {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) scale(1);
+          opacity: 0;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        .hero-subtitle {
+          font-size: 1.2rem;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        .section-card {
+          padding: 40px 30px;
+        }
+        .magic-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Starry background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Castle silhouette -->
+    <div class="castle-container">
+      <div class="castle"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Hero Section -->
+      <div class="hero">
+        <div class="magic-wand">✨</div>
+        <img
+          src="BC187BB1-0551-4793-947F-E1D29E432A43_1_201_a.jpeg"
+          alt="Premmika Premratanachai"
+          class="profile-img"
+        />
+        <h1 class="hero-title">Where Dreams Meet Partnerships</h1>
+        <p class="hero-subtitle">
+          Inspired by Disney's storytelling magic, I am passionate about
+          building meaningful partnerships, managing impactful products, and
+          driving projects that bring imagination to life across Southeast Asia.
+        </p>
+        <div class="scroll-indicator"></div>
+      </div>
+
+      <!-- Main Content -->
+      <section>
+        <div class="section-card">
+          <h2>Why Disney Is My Dream</h2>
+          <p>
+            Disney is more than entertainment—it is a place where creativity,
+            innovation, and inclusion come together to shape culture. What
+            excites me most is how Disney Entertainment blends technology,
+            media, and collaboration to create unforgettable experiences through
+            streaming and OTT platforms. Being part of this journey means
+            contributing to stories that matter.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <h2>Passion for Partnerships</h2>
+          <p>
+            I thrive at the intersection of
+            <span class="highlight">people, ideas, and execution</span>.
+            Supporting commercial deals, coordinating campaigns, and tracking
+            partnerships energize me because they transform collaboration into
+            measurable impact. Working with both local and regional teams in
+            Thailand allows me to bridge strategy and execution with clarity and
+            care.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <h2>My Product & Project Management DNA</h2>
+          <div class="magic-grid">
+            <div class="magic-card">
+              <div class="card-icon">🌟</div>
+              <h3>Turning Vision into Action</h3>
+              <p>
+                I enjoy breaking down big ideas into structured plans—defining
+                timelines, milestones, and priorities to keep projects moving
+                smoothly.
+              </p>
+            </div>
+            <div class="magic-card">
+              <div class="card-icon">🤝</div>
+              <h3>Collaboration Across Teams</h3>
+              <p>
+                From partnerships to marketing, I love working
+                cross-functionally to align goals, manage expectations, and
+                deliver successful outcomes.
+              </p>
+            </div>
+            <div class="magic-card">
+              <div class="card-icon">🚀</div>
+              <h3>Ownership & Adaptability</h3>
+              <p>
+                In fast-paced environments, I take initiative, adapt quickly,
+                and look for opportunities to contribute beyond my role.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2>Why I Fit Disney Entertainment Thailand</h2>
+          <p>
+            Although my academic background is rooted in technology,
+            engineering, and analytical problem-solving, my passion has always
+            extended beyond code and systems. Studying in tech has shaped how I
+            think—structured, detail-oriented, and solution-driven—but it has
+            also sparked a strong curiosity about how technology, media, and
+            partnerships come together to create meaningful products and
+            experiences.
+          </p>
+          <p>
+            I am deeply interested in learning how partnerships are formed, how
+            products are positioned, and how projects are managed across
+            multiple stakeholders and markets. The Partnerships & Product
+            Project Management role represents the perfect opportunity for me to
+            explore this intersection—where strategic thinking meets creativity
+            and execution. I see this internship as a chance to apply my
+            technical mindset to commercial and creative contexts, bringing
+            clarity, organization, and momentum to partnership initiatives.
+          </p>
+          <p>
+            I am especially excited about supporting Thailand partnership deals
+            while collaborating with regional SEA teams. I am eager to learn
+            directly from experienced leaders, understand real-world
+            decision-making, and contribute meaningfully—whether through
+            tracking proposals, supporting campaigns, or coordinating across
+            teams. This opportunity allows me to step outside my comfort zone,
+            challenge myself, and grow into a well-rounded professional.
+          </p>
+          <p>
+            I may be early in my journey, but I am highly motivated, quick to
+            learn, and genuinely passionate about discovering where my strengths
+            can create the most impact. Disney Entertainment Thailand represents
+            a place where I can explore this path with purpose, curiosity, and
+            dedication.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <h2>Looking Toward the Magic Ahead</h2>
+          <p>
+            This internship represents the opportunity to grow while
+            contributing to something bigger than myself. I am eager to support
+            impactful partnerships, learn how products and projects are managed
+            at scale, and play a small but meaningful role in Disney's continued
+            success in Thailand and Southeast Asia.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="dream-quote">"If you can dream it, you can do it."</div>
+        <p>2026 | Premmika Premratanachai Thailand</p>
+      </footer>
+    </div>
+
+    <script>
+      // Create starry background
+      const starsContainer = document.getElementById("stars");
+      for (let i = 0; i < 200; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.animationDelay = Math.random() * 3 + "s";
+        star.style.animationDuration = Math.random() * 2 + 2 + "s";
+        starsContainer.appendChild(star);
+      }
+
+      // Create shooting stars
+      setInterval(() => {
+        const shootingStar = document.createElement("div");
+        shootingStar.className = "shooting-star";
+        shootingStar.style.left = Math.random() * 100 + "%";
+        shootingStar.style.top = Math.random() * 50 + "%";
+        shootingStar.style.width = Math.random() * 100 + 50 + "px";
+        document.body.appendChild(shootingStar);
+        setTimeout(() => shootingStar.remove(), 3000);
+      }, 4000);
+
+      // Create floating particles
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.fontSize = Math.random() * 20 + 10 + "px";
+        particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+        particle.style.animationDelay = Math.random() * 5 + "s";
+
+        const particles = ["✨", "⭐", "🌟", "💫", "🎭", "🎬", "🏰"];
+        particle.textContent =
+          particles[Math.floor(Math.random() * particles.length)];
+
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 20000);
+      }
+      Dreaming, Building;
+      setInterval(createParticle, 2000);
+      for (let i = 0; i < 15; i++) {
+        setTimeout(createParticle, i * 300);
+      }
+
+      // Smooth scroll
+      document
+        .querySelector(".scroll-indicator")
+        ?.addEventListener("click", () => {
+          window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+        });
+
+      // Interactive card tilt effect
+      document.querySelectorAll(".magic-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+
+          card.style.transform = `translateY(-20px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+    </script>
+  </body>
+</html>
